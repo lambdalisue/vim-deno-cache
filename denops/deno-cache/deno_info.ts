@@ -1,39 +1,39 @@
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.8.0/mod.ts";
 
-const isDenoInfoSpan = is.ObjectOf({
-  start: is.ObjectOf({
-    line: is.Number,
-    character: is.Number,
-  }),
-  end: is.ObjectOf({
-    line: is.Number,
-    character: is.Number,
-  }),
-});
-
-const isDenoInfoFile = is.ObjectOf({
-  specifier: is.String,
-  span: isDenoInfoSpan,
-});
+// const isDenoInfoSpan = is.ObjectOf({
+//   start: is.ObjectOf({
+//     line: is.Number,
+//     character: is.Number,
+//   }),
+//   end: is.ObjectOf({
+//     line: is.Number,
+//     character: is.Number,
+//   }),
+// });
+//
+// const isDenoInfoFile = is.ObjectOf({
+//   specifier: is.String,
+//   span: isDenoInfoSpan,
+// });
 
 const isDenoInfo = is.ObjectOf({
   roots: is.ArrayOf(is.String),
   modules: is.ArrayOf(is.ObjectOf({
-    kind: is.String,
-    dependencies: is.OptionalOf(is.ArrayOf(is.ObjectOf({
-      specifier: is.String,
-      code: is.OptionalOf(isDenoInfoFile),
-      type: is.OptionalOf(isDenoInfoFile),
-    }))),
+    // kind: is.String,
+    // dependencies: is.OptionalOf(is.ArrayOf(is.ObjectOf({
+    //   specifier: is.String,
+    //   code: is.OptionalOf(isDenoInfoFile),
+    //   type: is.OptionalOf(isDenoInfoFile),
+    // }))),
     local: is.String,
-    emit: is.String,
-    map: is.Null,
-    size: is.Number,
-    mediaType: is.String,
+    // emit: is.String,
+    // map: is.Null,
+    // size: is.Number,
+    // mediaType: is.String,
     specifier: is.String,
   })),
-  redirects: is.Record,
-  npmPackages: is.Record,
+  // redirects: is.Record,
+  // npmPackages: is.Record,
 });
 
 const textDecoder = new TextDecoder();
