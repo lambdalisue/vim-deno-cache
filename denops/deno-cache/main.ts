@@ -32,7 +32,7 @@ export function main(denops: Denops): void {
         await opts.swapfile.set(denops, false);
         await opts.modifiable.set(denops, true);
         await denops.cmd(`keepjumps lockmarks %delete _`);
-        await denops.cmd(`keepjumps lockmarks 0read ${filename}`);
+        await denops.cmd(`silent keepjumps lockmarks 0read ${filename}`);
         await denops.cmd(`keepjumps lockmarks $delete _`);
         await opts.modified.set(denops, false);
       });
