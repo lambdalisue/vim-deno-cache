@@ -1,7 +1,7 @@
 if exists('g:loaded_deno_cache')
   finish
 endif
-let g:loaded_cache = 1
+let g:loaded_deno_cache = 1
 
 augroup deno_cache_plugin
   autocmd!
