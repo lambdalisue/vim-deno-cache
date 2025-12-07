@@ -1,5 +1,12 @@
 {
   "lock": false,
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-import-prefix"
+      ]
+    }
+  },
   "tasks": {
     "test": "deno test --unstable -A --doc --parallel --shuffle",
     "check": "deno check --unstable $(find . -name '*.ts')",

@@ -1,4 +1,4 @@
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.8.0/mod.ts";
+import { as, ensure, is } from "jsr:@core/unknownutil@4.3.0";
 
 // const isDenoInfoSpan = is.ObjectOf({
 //   start: is.ObjectOf({
@@ -25,7 +25,7 @@ const isDenoInfo = is.ObjectOf({
     //   code: is.OptionalOf(isDenoInfoFile),
     //   type: is.OptionalOf(isDenoInfoFile),
     // }))),
-    local: is.String,
+    local: as.Optional(is.String), // 'local' may not exists for specifier like "node:process"
     // emit: is.String,
     // map: is.Null,
     // size: is.Number,
@@ -50,7 +50,8 @@ export async function findLocalCache(url: URL): Promise<string | undefined> {
     throw new Error(`Failed to execute deno info: ${stderrStr}`);
   }
   const stdoutStr = textDecoder.decode(stdout);
-  const denoInfo = ensure(JSON.parse(stdoutStr), isDenoInfo);
+  const jsonData = JSON.parse(stdoutStr);
+  const denoInfo = ensure(jsonData, isDenoInfo);
   const root = denoInfo.roots[0];
   const module = denoInfo.modules.find((m) => m.specifier === root);
   return module?.local;

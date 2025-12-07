@@ -1,11 +1,11 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import * as batch from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as opts from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.8.0/mod.ts";
+import type { Entrypoint } from "jsr:@denops/std@8.2.0";
+import * as batch from "jsr:@denops/std@8.2.0/batch";
+import * as fn from "jsr:@denops/std@8.2.0/function";
+import * as opts from "jsr:@denops/std@8.2.0/option";
+import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
 import { findLocalCache } from "./deno_info.ts";
 
-export function main(denops: Denops): void {
+export const main: Entrypoint = (denops) => {
   denops.dispatcher = {
     async restore(path: unknown) {
       const url = parseDenoBufname(ensure(path, is.String));
@@ -49,7 +49,7 @@ export function main(denops: Denops): void {
       await opts.modified.set(denops, false);
     },
   };
-}
+};
 
 function parseDenoBufname(bufname: string): URL {
   return new URL(
